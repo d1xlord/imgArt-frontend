@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>imgArt - Turn image into art!</title>
+	<!-- JQUERY -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+</head>
+<body ng-app="myApp">
+	<div class="container-fluid" ng-controller="mainController">
+		<div class="row">
+			<div class="col-md-12" align="center">
+				<h1>imgArt - Turn your image into an Art!!</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div align="center">
+					<img ng-src="{{image1.compressed.dataURL}}" />
+					<input id="inputImage" type="file" accept="image/*" ng-model="image1" image="image1" resize-max-height="800" resize-max-width="800" resize-quality="0.7" resize-type="image/jpg" ng-image-compress/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div align="center">
+					<img ng-src="{{image2}}" />
+				</div>
+			</div>
+		</div>	
+	</div>
+	<!-- ANGULARJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.min.js"></script>
+	<script src="js/app.js"></script>
+    <script src="js/angular-image-compress.js"></script>
+</body>
+</html>
