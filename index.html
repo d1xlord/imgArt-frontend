@@ -38,7 +38,7 @@
 					<form name="form">
 						Single Image with validations
 						<div type="button" class="btn btn-info" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB" ngf-resize="{width: 600, height: 600, quality: .7, type: 'image/jpeg'}">Select</div>
-						<button type="submit" class="btn btn-danger" ng-click="sendFile()">Submit</button>
+						<button type="submit" class="btn btn-danger" ng-click="sendFile(file)">Submit</button>
 					</form>
 				</div>
 			</div>

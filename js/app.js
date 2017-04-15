@@ -2,7 +2,7 @@
 
 var app = angular.module('myApp', ['ngFileUpload']);
 
-app.controller('mainController', ['$scope', 'Upload', function($scope, Upload, $http) {
+app.controller('mainController', ['$scope', 'Upload', '$http', function($scope, Upload, $http) {
 	var vm = this;
     vm.myName = "Nafis Ahmed"
 	// upload later on form submit or something similar
@@ -12,18 +12,19 @@ app.controller('mainController', ['$scope', 'Upload', function($scope, Upload, $
       }
     };
 
-    $scope.sendFile = function() {
-        var data = $.param({
+    $scope.sendFile = function(file) {
+        console.log(file);
+        var data = {
             file: file,
-            fileName: 'nafTest'
-        });
+            fileName: file.name
+        };
         var config = {
-            headers: {
+            headers : {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             }
         }
-
-        $http.post('localhost:5000', data, config)
+        console.log(data);
+        $http.post('localhost:5000/submit', data, config)
         .success(function(data, status, headers, config) {
             $scope.PostDataResponse = data;
         })
