@@ -4,11 +4,25 @@
 	<meta charset="utf-8">
 	<title>imgArt - Turn image into art!</title>
 	<!-- JQUERY -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
+	<!-- ANGULARJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.min.js"></script>
+	<script src="js/app.js"></script>
+
+	<script src="js/ng-file-upload-shim.js"></script>
+	<script src="js/ng-file-upload.js"></script>
+
+	<style>
+		.my-drop-zone { border: dotted 3px lightgray; height: 800px; }
+		.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+		.another-file-over-class { border: dotted 3px green; }
+
+		html, body { height: 100%; }
+	</style>
 </head>
 <body ng-app="myApp" ng-controller="mainController as main">
 	<div class="container-fluid">
@@ -19,22 +33,22 @@
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<div align="center">
-					<img ng-src="{{image1.compressed.dataURL}}" />
-					<input id="inputImage" type="file" accept="image/*" ng-model="image1" image="image1" resize-max-height="800" resize-max-width="800" resize-quality="0.7" resize-type="image/jpg" ng-image-compress/>
+				<div class="well my-drop-zone" align="center">
+					<img ngf-thumbnail="file">
+					<form name="form">
+						Single Image with validations
+						<div type="button" class="btn btn-info" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB" ngf-resize="{width: 600, height: 600, quality: .7, type: 'image/jpeg'}">Select</div>
+						<button type="submit" class="btn btn-danger" ng-click="submit()">Submit</button>
+					</form>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div align="center">
-					<img ng-src="{{image1.compressed.dataURL}}" />
-					<h3>{{main.usedArt}}</h3>
+					{{main.convertedImage}}
+					<h3>Converted Image</h3>
 				</div>
 			</div>
 		</div>	
 	</div>
-	<!-- ANGULARJS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.min.js"></script>
-	<script src="js/app.js"></script>
-    <script src="js/angular-image-compress.js"></script>
 </body>
 </html>
